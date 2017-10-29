@@ -44,10 +44,10 @@ RR 5==>   -----   ------  <== RL 4
   #define PIN_RL 4 //servo[2]
   #define PIN_RR 5 //servo[3]
 
-  #define TRIM_RR 15
-#define TRIM_RL -20
-#define TRIM_YR 15 
-#define TRIM_YL -30
+  #define TRIM_RR -25
+#define TRIM_RL -17
+#define TRIM_YR -25 
+#define TRIM_YL -10
 
 ///////////////////////////////////////////////////////////////////
 //-- Global Variables -------------------------------------------//
@@ -55,8 +55,8 @@ RR 5==>   -----   ------  <== RL 4
 
 const char programID[]="Otto_todo"; //Each program will have a ID
 
-const char name_fac='$'; //Factory name
-const char name_fir='#'; //First name
+const char name_fac='Otto'; //Factory name
+const char name_fir='DIY'; //First name
 
 //-- Movement parameters
 int T=1000;              //Initial duration of movement
@@ -116,8 +116,8 @@ void setup(){
   //5 = EEPROM address that contains first name character
   if (EEPROM.read(5)==name_fac){ 
 
-    EEPROM.put(5, name_fir); //From now, the name is '#'
-    EEPROM.put(6, '\0'); 
+    //EEPROM.put(5, name_fir); //From now, the name is '#'
+    //EEPROM.put(6, '\0'); 
     Otto.putMouth(culito);
 
     while(true){    
@@ -655,7 +655,7 @@ void receiveName(){
           k++;
       }
       
-      EEPROM.put(eeAddress, newOttoName); 
+      //EEPROM.put(eeAddress, newOttoName); 
     }
     else 
     {
@@ -678,7 +678,7 @@ void requestName(){
     int eeAddress = 5;            //EEPROM address to start reading from
 
     //Get the float data from the EEPROM at position 'eeAddress'
-    EEPROM.get(eeAddress, actualOttoName);
+    //EEPROM.get(eeAddress, actualOttoName);
 
     Serial.print(F("&&"));
     Serial.print(F("E "));
